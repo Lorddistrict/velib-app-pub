@@ -1,12 +1,16 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {View, StyleSheet, Dimensions, SafeAreaView, ActivityIndicator} from 'react-native';
+import React, {useContext} from 'react';
+import {
+    StyleSheet,
+    Dimensions,
+    SafeAreaView
+} from 'react-native';
 import MapView, {Marker} from "react-native-maps";
 import {VelibContext} from "../../store/context";
 
 const MapScreen = () => {
 
     const data = useContext(VelibContext);
-    const velibs = data.velibs.records;
+    const stations = data.stations.records;
 
     return (
         <SafeAreaView style={styles.container}>
@@ -27,7 +31,7 @@ const MapScreen = () => {
                 rotateEnabled={true}
             >
                 {
-                    velibs && velibs.map((item, index) =>
+                    stations && stations.map((item, index) =>
                         <Marker
                             title={item.fields.station_name}
                             coordinate={{

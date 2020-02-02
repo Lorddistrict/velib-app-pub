@@ -194,16 +194,12 @@ const StationScreen = ({navigation}) => {
                         Achat de ticket
                     </Text>
                     <View style={styles.creditcard}>
-                        <TouchableOpacity
-                            onPress={() => { clearAsyncStorage() }}
-                        >
-                            {creditCard
-                                ?
-                                <Ionicons name='md-checkmark' size={25} color='#0A9C00' />
-                                :
-                                <Ionicons name='md-close' size={25} color='#F00000' />
-                            }
-                        </TouchableOpacity>
+                        {creditCard
+                            ?
+                            <Ionicons name='md-checkmark' size={25} color='#0A9C00' />
+                            :
+                            <Ionicons name='md-close' size={25} color='#F00000' />
+                        }
                     </View>
                 </View>
                 <Divider style={styles.divider} />

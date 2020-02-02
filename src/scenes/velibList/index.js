@@ -1,45 +1,25 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {
     View,
     ActivityIndicator,
     StyleSheet,
     FlatList,
 } from 'react-native';
-import { getVelibs } from "../../services/api";
 import StationItem from "../../components/stationItem";
-import {getLocation} from "../../services/location";
+import {VelibContext} from "../../store/context";
 
 const VelibScreen = ({navigation}) => {
 
-    const [loading, setLoading] = useState(true);
-    const [velibs, setVelibs] = useState();
+    const data = useContext(VelibContext);
+
+    const stations = data.stations.records;
 
     const nbColumns = 2;
 
-    useEffect(() => {
-        getAPIData();
-    }, []);
-
-    const getAPIData = async () => {
-        setLoading(true);
-        const location = await getLocation();
-        const velibsData = await getVelibs(location.coords.latitude, location.coords.longitude);
-        setVelibs(velibsData);
-        setLoading(false);
-
-    };
-
-    if (loading) {
-        return (
-            <View style={styles.loader}>
-                <ActivityIndicator size="large" color="steelblue"/>
-            </View>
-        )
-    }
     return (
         <View style={styles.container}>
             <FlatList
-                data={velibs}
+                data={stations}
                 renderItem={({item}) =>
                     <StationItem
                         station={item}
@@ -62,12 +42,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'center',
-    },
-    loader: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'transparent',
     },
     list: {
         flex: 1,

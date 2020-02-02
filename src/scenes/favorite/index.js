@@ -10,7 +10,7 @@ const FavoriteScreen = ({navigation}) => {
     const data = useContext(VelibContext);
 
     const nbColumns = 2;
-    const contextStations = data.velibs.records;
+    const contextStations = data.stations.records;
     const array = [];
 
     useEffect(() => {

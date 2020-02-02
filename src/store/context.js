@@ -5,7 +5,7 @@ export const VelibContext = createContext(null);
 
 export const VelibProvider = ({ children }) => {
 
-    const [velibs, setVelibs] = useState([]);
+    const [stations, setStations] = useState([]);
     const [localisation, setLocalisation] = useState({});
 
     useEffect(() => {
@@ -29,11 +29,11 @@ export const VelibProvider = ({ children }) => {
 
         fetch(API)
             .then(response => response.json())
-            .then(data => setVelibs(data))
+            .then(data => setStations(data))
     };
 
     return (
-        <VelibContext.Provider value={{ velibs, localisation }}>
+        <VelibContext.Provider value={{ stations, localisation }}>
             { children }
         </VelibContext.Provider>
     );
